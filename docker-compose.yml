@@ -1,0 +1,21 @@
+name: leo-command-center
+
+services:
+  app:
+    build: .
+    container_name: leo-command-center
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:3200:3200"
+    volumes:
+      # Persistent canvas/cost/status state only — no host OpenClaw access
+      - ./data:/app/data
+    environment:
+      API_TOKEN: ${API_TOKEN}
+      PORT: "3200"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3200/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 15s

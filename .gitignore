@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+.uv/
+uv.lock
+dist/
+*.egg-info/
+
+# Node
+node_modules/
+frontend/dist/
+
+# Runtime data
+data/
+*.json.bak
+
+# Env
+.env
+
+# Docker
+.dockerignore
+
+# OS
+.DS_Store
+desktop.ini

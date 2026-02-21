@@ -1,0 +1,898 @@
+/* Leo Command Center — Canvas & Component Styles */
+
+/* ─── Canvas Renderer ─── */
+
+.canvas-renderer {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  height: 100%;
+  overflow-y: auto;
+  padding: 20px 24px;
+  gap: 12px;
+}
+
+/* ─── Empty State ─── */
+
+.canvas-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 20px;
+  text-align: center;
+  gap: 8px;
+}
+
+.canvas-empty-icon { font-size: 48px; margin-bottom: 8px; }
+.canvas-empty-text { font-family: var(--font-mono); font-size: 15px; color: var(--text-secondary); }
+.canvas-empty-hint { font-family: var(--font-mono); font-size: 12px; color: var(--text-tertiary); }
+
+/* ─── Grid + Surface ─── */
+
+.canvas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+  gap: 12px;
+  align-items: start;
+}
+
+.canvas-surface {
+  animation: surfaceIn 400ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  transform-origin: center top;
+}
+
+@keyframes surfaceIn {
+  0%   { opacity: 0; transform: scale(0.85) translateY(16px); }
+  60%  { opacity: 1; transform: scale(1.02) translateY(-2px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.canvas-surface:nth-child(1) { animation-delay: 0ms; }
+.canvas-surface:nth-child(2) { animation-delay: 60ms; }
+.canvas-surface:nth-child(3) { animation-delay: 120ms; }
+.canvas-surface:nth-child(4) { animation-delay: 180ms; }
+.canvas-surface:nth-child(5) { animation-delay: 240ms; }
+.canvas-surface:nth-child(6) { animation-delay: 300ms; }
+.canvas-surface:nth-child(n+2) { animation-fill-mode: backwards; }
+
+.canvas-surface-exit {
+  animation: surfaceOut 350ms cubic-bezier(0.55, 0, 1, 0.45) forwards !important;
+  pointer-events: none;
+}
+
+@keyframes surfaceOut {
+  0%   { opacity: 1; transform: scale(1) translateY(0); }
+  100% { opacity: 0; transform: scale(0.85) translateY(12px); }
+}
+
+/* ─── Section Label ─── */
+
+.canvas-section-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.canvas-section-label::before {
+  content: '';
+  width: 3px;
+  height: 12px;
+  background: var(--apex-gold);
+  border-radius: 2px;
+}
+
+/* ─── Unknown Component ─── */
+
+.canvas-surface-error {
+  background: var(--bg-surface);
+  border: 1px solid rgba(255, 56, 152, 0.2);
+  border-radius: 12px;
+  padding: 14px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--apex-magenta);
+}
+
+.canvas-surface-error code {
+  background: var(--bg-deep);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+/* ─── StatusCard ─── */
+
+.canvas-status-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-left: 4px solid var(--apex-gold);
+  border-radius: 12px;
+  padding: 18px 20px;
+}
+
+.canvas-status-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.canvas-status-icon { font-size: 18px; }
+
+.canvas-status-title {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+}
+
+.canvas-status-value {
+  font-family: var(--font-mono);
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.canvas-status-subtitle {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-tertiary);
+  margin-top: 6px;
+}
+
+/* ─── QuickAction ─── */
+
+.canvas-quick-action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 64px;
+  padding: 14px 20px;
+  background: var(--bg-surface);
+  border: 2px solid;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 150ms ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.canvas-quick-action:hover { background: var(--bg-elevated); }
+.canvas-quick-action:active { transform: scale(0.97); background: var(--bg-elevated); }
+
+.canvas-qa-icon { font-size: 24px; }
+
+.canvas-qa-label {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* ─── TextBlock ─── */
+
+.canvas-text-block {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  padding: 18px 20px;
+}
+
+.canvas-text-heading {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+}
+
+.canvas-text-body {
+  font-family: var(--font-display);
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.canvas-text-code .canvas-text-body {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  white-space: pre-wrap;
+  color: var(--apex-green);
+  background: var(--bg-deep);
+  padding: 14px;
+  border-radius: 8px;
+}
+
+.canvas-text-quote { border-left: 3px solid var(--apex-purple); }
+.canvas-text-quote .canvas-text-body { font-style: italic; }
+
+/* ─── DataTable ─── */
+
+.canvas-data-table {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  padding: 18px 20px;
+  overflow-x: auto;
+}
+
+.canvas-table-title {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+}
+
+.canvas-data-table table { width: 100%; border-collapse: collapse; }
+
+.canvas-data-table th {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-tertiary);
+  text-align: left;
+  padding: 6px 10px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.canvas-data-table td {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-secondary);
+  padding: 9px 10px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.canvas-data-table tr:last-child td { border-bottom: none; }
+
+/* ─── ProgressBar ─── */
+
+.canvas-progress {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  padding: 14px 18px;
+}
+
+.canvas-progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.canvas-progress-label { font-family: var(--font-mono); font-size: 12px; color: var(--text-secondary); }
+.canvas-progress-pct { font-family: var(--font-mono); font-size: 12px; font-weight: 600; color: var(--text-primary); }
+
+.canvas-progress-track {
+  height: 6px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.canvas-progress-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 600ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ─── BarChart ─── */
+
+.canvas-chart {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  padding: 18px 20px;
+  overflow-x: auto;
+}
+
+.canvas-chart-title {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+}
+
+/* ─── Form ─── */
+
+.canvas-form {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  padding: 18px 20px;
+}
+
+.canvas-form-title {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 14px;
+}
+
+.canvas-form-field { margin-bottom: 14px; }
+
+.canvas-form-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-bottom: 5px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.canvas-form-input {
+  width: 100%;
+  padding: 10px 12px;
+  background: var(--bg-deep);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  color: var(--text-primary);
+  font-family: var(--font-display);
+  font-size: 14px;
+  outline: none;
+  transition: border-color 200ms ease;
+  -webkit-appearance: none;
+}
+
+.canvas-form-input:focus { border-color: var(--apex-gold); }
+.canvas-form-textarea { resize: vertical; min-height: 72px; }
+
+.canvas-form-submit {
+  width: 100%;
+  padding: 12px;
+  background: var(--apex-gold);
+  color: var(--bg-deep);
+  border: none;
+  border-radius: 10px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 150ms ease;
+  margin-top: 4px;
+}
+
+.canvas-form-submit:hover { opacity: 0.9; }
+.canvas-form-submit:active { transform: scale(0.97); }
+
+.canvas-form-submitted {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 36px;
+}
+
+.canvas-form-check { font-size: 32px; margin-bottom: 8px; }
+.canvas-form-done { font-family: var(--font-mono); font-size: 13px; color: var(--text-secondary); }
+
+/* ─── ListCard ─── */
+
+.canvas-list-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  padding: 18px 20px;
+}
+
+.canvas-list-title {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+  margin-bottom: 10px;
+}
+
+.canvas-list-item { display: flex; align-items: flex-start; gap: 8px; padding: 5px 0; }
+
+.canvas-list-bullet {
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--apex-gold);
+  min-width: 18px;
+}
+
+.canvas-list-text {
+  font-family: var(--font-display);
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* ─── Clock ─── */
+
+.canvas-clock {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  padding: 24px 20px;
+  text-align: center;
+}
+
+.canvas-clock-time {
+  font-family: var(--font-mono);
+  font-size: 56px;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.canvas-clock-date {
+  font-family: var(--font-display);
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-top: 6px;
+}
+
+/* ─── SystemHealth ─── */
+
+.canvas-stats {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.canvas-stats-loading { font-family: var(--font-mono); font-size: 11px; color: var(--text-tertiary); padding: 12px; }
+
+.canvas-stats-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+
+.canvas-stats-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-secondary);
+}
+
+.canvas-stats-pct { font-family: var(--font-mono); font-size: 13px; font-weight: 600; }
+
+.canvas-stats-bar { height: 5px; background: rgba(255,255,255,0.06); border-radius: 3px; overflow: hidden; }
+
+.canvas-stats-bar-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 800ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.canvas-stats-sub { font-family: var(--font-mono); font-size: 10px; color: var(--text-tertiary); margin-top: 3px; }
+
+/* ─── LeoStatus ─── */
+
+.canvas-leo-status {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-top: 3px solid var(--apex-gold);
+  border-radius: 12px;
+  padding: 18px 20px;
+}
+
+.canvas-leo-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 14px;
+}
+
+.canvas-leo-name {
+  font-family: var(--font-mono);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--apex-gold);
+  letter-spacing: 0.04em;
+}
+
+.canvas-leo-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 8px;
+  border-radius: 20px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.canvas-leo-badge.online  { background: rgba(0,255,136,0.12); color: var(--apex-green); border: 1px solid rgba(0,255,136,0.2); }
+.canvas-leo-badge.offline { background: rgba(255,56,152,0.12); color: var(--apex-magenta); border: 1px solid rgba(255,56,152,0.2); }
+.canvas-leo-badge.unknown { background: rgba(255,178,36,0.12); color: var(--apex-amber); border: 1px solid rgba(255,178,36,0.2); }
+
+.canvas-leo-badge-dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: currentColor;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.canvas-leo-rows { display: flex; flex-direction: column; gap: 6px; }
+
+.canvas-leo-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+}
+
+.canvas-leo-row-label { color: var(--text-tertiary); width: 90px; flex-shrink: 0; }
+.canvas-leo-row-value { color: var(--text-secondary); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* ─── OllamaMonitor ─── */
+
+.canvas-ollama {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-left: 4px solid var(--apex-purple);
+  border-radius: 12px;
+  padding: 18px 20px;
+}
+
+.canvas-ollama-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+
+.canvas-ollama-title {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+}
+
+.canvas-ollama-idle { font-family: var(--font-mono); font-size: 11px; color: var(--text-tertiary); font-style: italic; }
+
+.canvas-ollama-model {
+  font-family: var(--font-mono);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--apex-purple);
+  margin-bottom: 4px;
+}
+
+.canvas-ollama-meta {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-tertiary);
+}
+
+/* ─── GatewayLog ─── */
+
+.canvas-gwlog {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  padding: 18px 20px;
+}
+
+.canvas-gwlog-entry {
+  display: flex;
+  gap: 8px;
+  padding: 5px 0;
+  border-bottom: 1px solid var(--border-subtle);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  align-items: flex-start;
+}
+
+.canvas-gwlog-entry:last-child { border-bottom: none; }
+
+.canvas-gwlog-time { color: var(--text-tertiary); flex-shrink: 0; }
+
+.canvas-gwlog-badge {
+  flex-shrink: 0;
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.canvas-gwlog-badge.ERROR { background: rgba(255,56,152,0.15); color: var(--apex-magenta); }
+.canvas-gwlog-badge.WARN  { background: rgba(255,178,36,0.15); color: var(--apex-amber); }
+
+.canvas-gwlog-msg { color: var(--text-secondary); line-height: 1.4; }
+
+.canvas-gwlog-empty { font-family: var(--font-mono); font-size: 11px; color: var(--text-tertiary); padding: 4px 0; }
+
+/* ─── CostMeter ─── */
+
+.canvas-cost {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.canvas-cost-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.canvas-cost-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.canvas-cost-label { font-family: var(--font-mono); font-size: 11px; color: var(--text-secondary); }
+.canvas-cost-value { font-family: var(--font-mono); font-size: 13px; font-weight: 600; }
+.canvas-cost-limit { font-family: var(--font-mono); font-size: 10px; color: var(--text-tertiary); }
+
+.canvas-cost-bar { height: 5px; background: rgba(255,255,255,0.06); border-radius: 3px; overflow: hidden; }
+.canvas-cost-bar-fill { height: 100%; border-radius: 3px; transition: width 600ms cubic-bezier(0.4, 0, 0.2, 1); }
+
+/* ─── TaskCard ─── */
+
+.canvas-task {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  padding: 18px 20px;
+}
+
+.canvas-task-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
+
+.canvas-task-title {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary);
+  flex: 1;
+  padding-right: 10px;
+}
+
+.canvas-task-status-badge {
+  flex-shrink: 0;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.canvas-task-status-badge.running  { background: rgba(0,255,136,0.12); color: var(--apex-green); }
+.canvas-task-status-badge.pending  { background: rgba(0,212,255,0.12); color: var(--apex-cyan); }
+.canvas-task-status-badge.blocked  { background: rgba(255,56,152,0.12); color: var(--apex-magenta); }
+.canvas-task-status-badge.done     { background: rgba(139,92,246,0.12); color: var(--apex-purple); }
+.canvas-task-status-badge.failed   { background: rgba(255,68,68,0.12); color: var(--apex-red); }
+
+.canvas-task-desc { font-family: var(--font-display); font-size: 13px; color: var(--text-secondary); line-height: 1.5; margin-bottom: 10px; }
+
+.canvas-task-steps { display: flex; flex-direction: column; gap: 4px; }
+
+.canvas-task-step { display: flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 11px; }
+
+.canvas-task-step-icon { font-size: 12px; }
+.canvas-task-step-text { color: var(--text-secondary); }
+.canvas-task-step-text.done { color: var(--text-tertiary); text-decoration: line-through; }
+
+.canvas-task-priority {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-tertiary);
+  margin-top: 8px;
+}
+
+/* ─── ApprovalCard ─── */
+
+.canvas-approval {
+  background: var(--bg-surface);
+  border: 1px solid rgba(255, 178, 36, 0.3);
+  border-top: 3px solid var(--apex-amber);
+  border-radius: 12px;
+  padding: 18px 20px;
+}
+
+.canvas-approval-header { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+
+.canvas-approval-icon { font-size: 20px; }
+
+.canvas-approval-title {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.canvas-approval-desc { font-family: var(--font-display); font-size: 13px; color: var(--text-secondary); line-height: 1.5; margin-bottom: 12px; }
+
+.canvas-approval-cmd {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--apex-cyan);
+  background: var(--bg-deep);
+  padding: 10px 12px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  word-break: break-all;
+}
+
+.canvas-approval-risk {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--apex-amber);
+  margin-bottom: 14px;
+}
+
+.canvas-approval-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+
+.canvas-approval-btn {
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 150ms ease;
+}
+
+.canvas-approval-btn:active { transform: scale(0.97); }
+
+.canvas-approval-approve {
+  background: rgba(0, 255, 136, 0.15);
+  color: var(--apex-green);
+  border: 1px solid rgba(0, 255, 136, 0.3);
+}
+
+.canvas-approval-approve:hover { background: rgba(0, 255, 136, 0.25); }
+
+.canvas-approval-deny {
+  background: rgba(255, 56, 152, 0.12);
+  color: var(--apex-magenta);
+  border: 1px solid rgba(255, 56, 152, 0.25);
+}
+
+.canvas-approval-deny:hover { background: rgba(255, 56, 152, 0.22); }
+
+.canvas-approval-decided {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px;
+  border-radius: 8px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+.canvas-approval-decided.approved { background: rgba(0,255,136,0.08); color: var(--apex-green); }
+.canvas-approval-decided.denied   { background: rgba(255,56,152,0.08); color: var(--apex-magenta); }
+
+/* ─── AlertBanner ─── */
+
+.canvas-alert {
+  border-radius: 12px;
+  padding: 14px 18px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.canvas-alert.info     { background: rgba(0,212,255,0.06); border: 1px solid rgba(0,212,255,0.2); }
+.canvas-alert.warning  { background: rgba(255,178,36,0.06); border: 1px solid rgba(255,178,36,0.25); }
+.canvas-alert.error    { background: rgba(255,56,152,0.06); border: 1px solid rgba(255,56,152,0.25); }
+
+.canvas-alert-icon { font-size: 20px; flex-shrink: 0; padding-top: 1px; }
+
+.canvas-alert-body { flex: 1; }
+
+.canvas-alert-message { font-family: var(--font-display); font-size: 14px; font-weight: 600; line-height: 1.4; }
+
+.canvas-alert.info    .canvas-alert-message { color: var(--apex-cyan); }
+.canvas-alert.warning .canvas-alert-message { color: var(--apex-amber); }
+.canvas-alert.error   .canvas-alert-message { color: var(--apex-magenta); }
+
+.canvas-alert-details { font-family: var(--font-mono); font-size: 11px; color: var(--text-secondary); margin-top: 4px; line-height: 1.5; }
+
+/* ─── AlertBanner: severity classes ─── */
+.canvas-alert.info    { background: rgba(0,212,255,0.06); border: 1px solid rgba(0,212,255,0.2); }
+.canvas-alert.warning { background: rgba(255,178,36,0.06); border: 1px solid rgba(255,178,36,0.25); }
+.canvas-alert.error   { background: rgba(255,56,152,0.06); border: 1px solid rgba(255,56,152,0.25); }
+.canvas-alert-header  { display: flex; align-items: center; gap: 4px; margin-bottom: 4px; }
+
+/* ─── StatusCard: corrected class names ─── */
+.canvas-status-card-header { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+.canvas-status-card-icon   { font-size: 18px; }
+.canvas-status-card-title  { font-family: var(--font-mono); font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-secondary); }
+.canvas-status-card-value  { font-family: var(--font-mono); font-size: 32px; font-weight: 600; line-height: 1; }
+.canvas-status-card-subtitle { font-family: var(--font-mono); font-size: 11px; color: var(--text-tertiary); margin-top: 6px; }
+
+/* ─── QuickAction: corrected icon class ─── */
+.canvas-quick-action-icon { font-size: 24px; }
+
+/* ─── TextBlock: variant classes ─── */
+.canvas-text-block-heading { font-family: var(--font-display); font-size: 16px; font-weight: 600; color: var(--text-primary); margin-bottom: 10px; }
+.canvas-text-block-body    { font-family: var(--font-display); font-size: 14px; line-height: 1.6; color: var(--text-secondary); margin: 0; }
+.canvas-text-block-code    { font-family: var(--font-mono); font-size: 12px; white-space: pre-wrap; color: var(--apex-green); background: var(--bg-deep); padding: 14px; border-radius: 8px; overflow-x: auto; margin: 0; }
+.canvas-text-block-quote   { border-left: 3px solid var(--apex-purple); padding-left: 12px; font-style: italic; color: var(--text-secondary); margin: 0; }
+.canvas-text-block--code   { background: var(--bg-deep); }
+
+/* ─── DataTable: explicit element class names ─── */
+.canvas-data-table-wrap { overflow-x: auto; }
+.canvas-data-table-el   { width: 100%; border-collapse: collapse; }
+.canvas-data-table-th   { font-family: var(--font-mono); font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-tertiary); text-align: left; padding: 6px 10px; border-bottom: 1px solid var(--border-subtle); }
+.canvas-data-table-tr:last-child .canvas-data-table-td { border-bottom: none; }
+.canvas-data-table-td   { font-family: var(--font-mono); font-size: 12px; color: var(--text-secondary); padding: 9px 10px; border-bottom: 1px solid var(--border-subtle); }
+
+/* ─── ProgressBar: corrected value class ─── */
+.canvas-progress-value { font-family: var(--font-mono); font-size: 12px; font-weight: 600; }
+
+/* ─── BarChart: corrected root class ─── */
+.canvas-bar-chart { background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 18px 20px; }
+
+/* ─── SystemHealth: component-specific classes ─── */
+.canvas-health        { background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 18px 20px; }
+.canvas-health-row    { display: flex; flex-direction: column; gap: 5px; margin-bottom: 10px; }
+.canvas-health-row:last-of-type { margin-bottom: 0; }
+.canvas-health-header { display: flex; justify-content: space-between; align-items: center; }
+.canvas-health-label  { font-family: var(--font-mono); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-secondary); }
+.canvas-health-value  { font-family: var(--font-mono); font-size: 12px; font-weight: 600; }
+
+/* ─── Clock: timezone label ─── */
+.canvas-clock-tz { font-family: var(--font-mono); font-size: 10px; color: var(--text-tertiary); margin-top: 4px; }
+
+/* ─── TaskCard: badge alias ─── */
+.canvas-task-badge { flex-shrink: 0; padding: 2px 8px; border-radius: 12px; font-family: var(--font-mono); font-size: 10px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; border: 1px solid; }
+
+/* ─── ApprovalCard: BEM modifier buttons ─── */
+.canvas-approval-btn--approve { background: rgba(0,255,136,0.15); color: var(--apex-green); border: 1px solid rgba(0,255,136,0.3); }
+.canvas-approval-btn--approve:hover { background: rgba(0,255,136,0.25); }
+.canvas-approval-btn--deny    { background: rgba(255,56,152,0.12); color: var(--apex-magenta); border: 1px solid rgba(255,56,152,0.25); }
+.canvas-approval-btn--deny:hover { background: rgba(255,56,152,0.22); }
+
+/* ─── ListCard: list elements ─── */
+.canvas-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 4px; }
+.canvas-list--ordered { list-style: decimal; padding-left: 16px; }
+.canvas-list-item-icon { flex-shrink: 0; margin-right: 2px; }

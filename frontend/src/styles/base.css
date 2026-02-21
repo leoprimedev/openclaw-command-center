@@ -1,0 +1,169 @@
+/* Leo Command Center — Base Styles */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+:root {
+  /* Backgrounds */
+  --bg-deep: #08090e;
+  --bg-surface: #0f1117;
+  --bg-elevated: #161922;
+  --bg-hover: #1c1f2b;
+
+  /* Leo accent — amber/gold primary instead of Rex's green */
+  --apex-gold: #ffb224;
+  --apex-green: #00ff88;
+  --apex-cyan: #00d4ff;
+  --apex-amber: #ffb224;
+  --apex-magenta: #ff3898;
+  --apex-purple: #8b5cf6;
+  --apex-red: #ff4444;
+
+  /* Text */
+  --text-primary: #f0f0f0;
+  --text-secondary: #8b8fa3;
+  --text-tertiary: #4a4e5a;
+  --text-disabled: #2a2d38;
+
+  /* Borders */
+  --border-subtle: rgba(255, 255, 255, 0.06);
+  --border-hover: rgba(255, 255, 255, 0.1);
+  --border-accent: rgba(255, 178, 36, 0.2);
+
+  /* Glows */
+  --glow-gold: 0 0 20px rgba(255, 178, 36, 0.15);
+  --glow-green: 0 0 20px rgba(0, 255, 136, 0.15);
+  --glow-cyan: 0 0 20px rgba(0, 212, 255, 0.15);
+
+  /* Typography */
+  --font-display: 'Inter', -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', monospace;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  background: var(--bg-deep);
+  color: var(--text-primary);
+  font-family: var(--font-display);
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* ─── App Shell ─── */
+
+.lcc-root {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+.lcc-header {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 24px;
+  border-bottom: 1px solid var(--border-subtle);
+  background: var(--bg-surface);
+}
+
+.lcc-header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.lcc-lion {
+  font-size: 28px;
+  line-height: 1;
+}
+
+.lcc-title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.lcc-title {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--apex-gold);
+}
+
+.lcc-subtitle {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-tertiary);
+  letter-spacing: 0.04em;
+}
+
+.lcc-header-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.lcc-conn-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--text-tertiary);
+}
+
+.lcc-conn-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.lcc-conn-dot.connected {
+  background: var(--apex-green);
+  box-shadow: 0 0 8px rgba(0, 255, 136, 0.5);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.lcc-conn-dot.disconnected {
+  background: var(--apex-magenta);
+  animation: pulse 1s ease-in-out infinite;
+}
+
+.lcc-main {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* ─── Animations ─── */
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── Scrollbar ─── */
+
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border-hover); border-radius: 2px; }
