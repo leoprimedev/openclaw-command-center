@@ -27,7 +27,7 @@ RUN pip install --no-cache-dir -e .
 COPY server/ ./server/
 
 # Copy built frontend
-COPY --from=frontend-builder /build/dist ./static
+COPY --from=frontend-builder /dist ./static
 
 # Runtime dirs
 RUN mkdir -p /app/data
