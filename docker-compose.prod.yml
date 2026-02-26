@@ -18,3 +18,16 @@ services:
       timeout: 10s
       retries: 3
       start_period: 15s
+
+  watchtower:
+    image: containrrr/watchtower
+    container_name: leo-watchtower
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      WATCHTOWER_POLL_INTERVAL: 300        # check every 5 min
+      WATCHTOWER_CLEANUP: "true"           # remove old images after update
+      WATCHTOWER_INCLUDE_STOPPED: "false"
+      WATCHTOWER_SCOPE: leo-command-center # only watch this stack
+    command: --scope leo-command-center
