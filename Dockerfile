@@ -21,7 +21,7 @@ WORKDIR /app
 
 # Install Python deps
 COPY pyproject.toml ./
-RUN pip install --no-cache-dir -e .
+RUN pip install --no-cache-dir .
 
 # Copy server code
 COPY server/ ./server/
