@@ -69,7 +69,7 @@ jobs:
           oauth-client-id: ${{ secrets.TS_OAUTH_CLIENT_ID }}
           oauth-secret: ${{ secrets.TS_OAUTH_SECRET }}
           tags: tag:ci
-          version: 1.80.3
+          version: 1.66.4
 
       - name: Copy compose file to server
         uses: appleboy/scp-action@v0.1.7
